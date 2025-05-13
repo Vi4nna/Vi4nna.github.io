@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JGuiVianna | Portfólio Digital</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.9),
+          rgba(26, 0, 0, 0.7)
+        );
+        z-index: -2;
+      }
+
+      /* Galeria de Artes */
+      .art-gallery {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-out;
+        background-color: rgba(26, 0, 0, 0.8);
+        border-radius: 8px;
+        margin: 0 auto;
+        max-width: 800px;
+        width: 90%;
+      }
+
+      .art-gallery.open {
+        max-height: 1000px;
+        padding: 15px;
+        margin: 20px auto;
+      }
+
+      .gallery-images {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+        padding: 10px;
+      }
+
+      .gallery-images img {
+        width: 100%;
+        border-radius: 5px;
+        border: 2px solid var(--vermelho-claro);
+        transition: transform 0.3s;
+      }
+
+      .gallery-images img:hover {
+        transform: scale(1.03);
+      }
+
+      /* Redes Sociais */
+      .social-media-container {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-out;
+        background-color: rgba(26, 0, 0, 0.8);
+        border-radius: 8px;
+        margin: 0 auto;
+        max-width: 300px;
+        width: 90%;
+      }
+
+      .social-media-container.open {
+        max-height: 200px;
+        padding: 15px;
+        margin: 20px auto;
+      }
+
+      .social-media-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .social-link {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--branco);
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        transition: all 0.3s;
+        background-color: rgba(255, 107, 107, 0.2);
+        width: 100%;
+        max-width: 250px;
+      }
+
+      .social-link:hover {
+        background-color: rgba(255, 107, 107, 0.4);
+        transform: translateY(-3px);
+      }
+
+      .social-link img {
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+      }
+
+      .social-link span {
+        font-size: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Cabeçalho com foto em círculo -->
+    <header>
+      <div class="profile-container">
+        <img src="assets/pfp.png" alt="JGuiVianna" class="profile-pic" />
+      </div>
+      <h1>JGuiVianna</h1>
+      <p class="tagline">Artista Digital / Digital Artist</p>
+    </header>
+
+    <!-- Seção de Commissions -->
+    <section class="comissions">
+      <h2> Comissions / Commissions</h2>
+      <div class="price-table">
+        <div class="price-card">
+          <h3>Sketch / Esboço</h3>
+          <p class="price">R$ 20 | US$ 5</p>
+          <div class="features">
+            <p>Esboço em preto e branco / Black and white sketch</p>
+            <p>Revisões simples / Basic revisions</p>
+          </div>
+        </div>
+        <div class="price-card highlight">
+          <h3>Pintado / Full Color</h3>
+          <p class="price">R$ 50 | US$ 12</p>
+          <div class="features">
+            <p>Arte colorida básica / Basic colored artwork</p>
+            <p>1 personagem / 1 character</p>
+          </div>
+        </div>
+      </div>
+
+      <h2> Adicionais / Extras</h2>
+      <div class="add-ons">
+        <div class="add-on">
+          <p>+ Personagem / + Character</p>
+          <p>R$ 15 | US$ 4</p>
+        </div>
+        <div class="add-on">
+          <p>Fundo Detalhado / Detailed Background</p>
+          <p>R$ 30 | US$ 8</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Galeria -->
+    <section class="gallery">
+      <button
+        id="gallery-toggle"
+        class="gallery-btn"
+      >
+        Ver artes já feitas / View completed works
+      </button>
+      <button
+        id="social-toggle"
+        class="gallery-btn"
+      >
+        Redes Sociais / Social Media
+      </button>
+    </section>
+
+    <!-- Container da Galeria Slide -->
+    <div id="art-gallery" class="art-gallery persistent">
+      <div class="gallery-images">
+        <img src="assets/Luther.png" alt="Arte 1" />
+        <img src="assets/Mulher.png" alt="Arte 2" />
+        <img src="assets/33 Sem Título.png" alt="Arte 3" />
+        <img src="assets/35 Sem Título_Restaurado.png" alt="Arte 4" />
+        <img src="assets/57 Sem Título.png" alt="Arte 5" />
+        <img src="assets/112 Sem Título.png" alt="Arte 6" />
+        <img src="assets/229 Sem Título.png" alt="Arte 7" />
+        <img src="assets/225 Sem Título_20250302175521.png" alt="Arte 8" />
+        <img src="assets/230 Sem Título8.png" alt="Arte 9" />
+      </div>
+    </div>
+
+    <!-- Container das Redes Sociais -->
+    <div id="social-media" class="social-media-container persistent">
+      <div class="social-media-content">
+        <a
+          href="https://www.instagram.com/jguivianna/"
+          target="_blank"
+          class="social-link"
+        >
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png"
+            alt="Instagram"
+          />
+          <span>@jguivianna</span>
+        </a>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const galleryToggle = document.getElementById("gallery-toggle");
+        const socialToggle = document.getElementById("social-toggle");
+        const artGallery = document.getElementById("art-gallery");
+        const socialMedia = document.getElementById("social-media");
+
+        function toggleGallery() {
+          const isOpening = !artGallery.classList.contains("open");
+
+          if (isOpening) {
+            socialMedia.classList.remove("open");
+            socialMedia.style.maxHeight = "0";
+          }
+
+          artGallery.classList.toggle("open");
+          artGallery.style.maxHeight = artGallery.classList.contains("open")
+            ? artGallery.scrollHeight + "px"
+            : "0";
+        }
+
+        function toggleSocial() {
+          const isOpening = !socialMedia.classList.contains("open");
+
+          if (isOpening) {
+            artGallery.classList.remove("open");
+            artGallery.style.maxHeight = "0";
+          }
+
+          socialMedia.classList.toggle("open");
+          socialMedia.style.maxHeight = socialMedia.classList.contains("open")
+            ? socialMedia.scrollHeight + "px"
+            : "0";
+        }
+
+        galleryToggle.addEventListener("click", function (e) {
+          e.stopPropagation();
+          toggleGallery();
+        });
+
+        socialToggle.addEventListener("click", function (e) {
+          e.stopPropagation();
+          toggleSocial();
+        });
+
+        document.addEventListener("click", function (e) {
+          if (!artGallery.contains(e.target) && e.target !== galleryToggle) {
+            artGallery.classList.remove("open");
+            artGallery.style.maxHeight = "0";
+          }
+          if (!socialMedia.contains(e.target) && e.target !== socialToggle) {
+            socialMedia.classList.remove("open");
+            socialMedia.style.maxHeight = "0";
+          }
+        });
+      });
+    </script>
+
+    <script src="particles.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
