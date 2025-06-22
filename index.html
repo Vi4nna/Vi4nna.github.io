@@ -526,8 +526,52 @@
           grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         }
       }
+      /* Lightbox */
+      .lightbox {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .lightbox.active {
+        display: flex;
+      }
+
+      .lightbox-img {
+        max-width: 90%;
+        max-height: 90%;
+        border: 3px solid var(--vermelho-claro);
+        border-radius: 5px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+      }
+
+      .close-lightbox {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: var(--branco);
+        font-size: 2.5rem;
+        cursor: pointer;
+        transition: color 0.3s;
+      }
+
+      .close-lightbox:hover {
+        color: var(--vermelho-claro);
+      }
     </style>
   </head>
+  <div class="lightbox" id="lightbox">
+    <span class="close-lightbox">&times;</span>
+    <img src="" alt="" class="lightbox-img" id="lightbox-img" />
+  </div>
+
   <body>
     <!-- Language Selector -->
     <div class="language-selector">
@@ -685,41 +729,21 @@
     <!-- Container da Galeria -->
     <div id="art-gallery" class="art-gallery persistent">
       <div class="gallery-images">
-        <img
-          src="assets/Luther.png"
-          alt="Luther"
-          data-category="characters"
-        />
+        <img src="assets/Luther.png" alt="Luther" data-category="characters" />
         <img
           src="assets/Mulher.png"
           alt="Mulher de Amarelo"
           data-category="characters"
         />
-        <img
-          src="assets/33 Sem Título.png"
-          alt=""
-          data-category="monsters"
-        />
+        <img src="assets/33 Sem Título.png" alt="" data-category="monsters" />
         <img
           src="assets/35 Sem Título_Restaurado.png"
           alt=""
           data-category="furrys"
         />
-        <img
-          src="assets/57 Sem Título.png"
-          alt=""
-          data-category="characters"
-        />
-        <img
-          src="assets/112 Sem Título.png"
-          alt=""
-          data-category="monsters"
-        />
-        <img
-          src="assets/229 Sem Título.png"
-          alt=""
-          data-category="furrys"
-        />
+        <img src="assets/57 Sem Título.png" alt="" data-category="characters" />
+        <img src="assets/112 Sem Título.png" alt="" data-category="monsters" />
+        <img src="assets/229 Sem Título.png" alt="" data-category="furrys" />
         <img
           src="assets/Cavaleiro de Paladium.png"
           alt="Cavaleiro de Paladium"
@@ -730,11 +754,7 @@
           alt="Rastejante"
           data-category="monsters"
         />
-        <img
-          src="assets/230 Sem Título8.png"
-          alt=""
-          data-category="monsters"
-        />
+        <img src="assets/230 Sem Título8.png" alt="" data-category="monsters" />
       </div>
     </div>
 
@@ -769,8 +789,8 @@
     <!-- Footer -->
     <footer>
       <p
-        data-pt="© 2023 JGuiVianna - Todos os direitos reservados"
-        data-en="© 2023 JGuiVianna - All rights reserved"
+        data-pt="© 2025 JGuiVianna - Todos os direitos reservados"
+        data-en="© 2025 JGuiVianna - All rights reserved"
       >
         © 2025 JGuiVianna - Todos os direitos reservados
       </p>
@@ -788,6 +808,29 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
+        // Lightbox para a galeria
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        const closeLightbox = document.querySelector(".close-lightbox");
+
+        document.querySelectorAll(".gallery-images img").forEach((img) => {
+          img.addEventListener("click", (e) => {
+            lightbox.classList.add("active");
+            lightboxImg.src = e.target.src;
+            lightboxImg.alt = e.target.alt;
+          });
+        });
+
+        closeLightbox.addEventListener("click", () => {
+          lightbox.classList.remove("active");
+        });
+
+        lightbox.addEventListener("click", (e) => {
+          if (e.target === lightbox) {
+            lightbox.classList.remove("active");
+          }
+        });
+
         // Sistema de Tradução
         const ptBtn = document.getElementById("pt-btn");
         const enBtn = document.getElementById("en-btn");
